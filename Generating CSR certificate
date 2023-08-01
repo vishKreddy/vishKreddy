@@ -1,0 +1,20 @@
+How to generate CSR certificate:
+
+Firstly we must understand why it is important to learn how to generate a CSR certificate. Whenever a carrier or any user logs into our portal, they get to choose a certain number of entitlements based on what their needs are or what they wish to subscribe for. For each type of selection , a different certificate is generated that needs to be signed.
+So for testing purposes, you need to test the permutation and combination of API’s, hence the need to generate different certificates.
+Now that we have established the purpose, let’s get to the steps to generate a certificate and sign it.
+
+
+Pre-requisite: In the shared drive, there is a zip file called cert-utils-master.zip. Download the zip file and extract the folder. This folder has the necessary code/files needed for our next actions.
+First task is: Open your command line/terminal
+Second: check the current directory you are in, set the directory to cert-utils-master workspace/ Folder.
+Third: Now we are going to download the CSR certificate from our CI portal(es-testing.csr) and copy it to cert-utils-master folder (The folder is important because that needs to be our working directory for the next steps.)
+Fourth: Select all entitlements( Because that would mean we are checking all API’s)
+Fifth:Go to implementation and download the CSR certificate and check if it is in cert-utils-master directory or not.
+Sixth: Now go to your terminal and change your working directory to cert-utils-master in which we downloaded the CSR (In my case it is cert-utils-master on desktop)
+Seventh:  Now type     ./ca.sh      this command will generate the key(RSA token) for you to sign the CSR certificate and generate a singable doc ()
+Eighth: Next in the terminal, the next command is      ./sign.sh es-testing.csr         this command will sign the doc and generate another doc of the name    es-testing.cert
+Nine: Now the cat command to display the contents of the cert files, I.e.,     cat es-testing.cert  
+Ten:Copy the contents right from beginning to end and paste in the certificate box and click on save.
+
+Note: Before generating a new csr file always check that you have deleted all the previous csr files.
