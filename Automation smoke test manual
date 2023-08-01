@@ -1,0 +1,52 @@
+Essential smoke test Manual(Selenium IDE):
+Background/ Prerequisites:
+You will need the Selenium IDE chrome extension to run these cases on chrome browser. If you wish to run these on Firefox, please install the browser extension for Firefox and likewise.(you can run these scripts on Chrome, Firefox and Microsoft Edge)
+Please manage your passwords and do not autosave/autofill the passwords.
+How to install/add Selenium IDE extension:
+For Chrome: Open a tab on your chrome browser, On the top right corner, click on the “three vertical dots” visible.
+Next click on Extensions—> Visit Chrome Web store, takes you to another landing page.
+Here on the top left, search for Selenium IDE in the search bar and click on the first search result.
+You will end up on another landing page, where you need to click on Add extension and accept any permissions if asked.
+How to verify if the extension has been added?: 
+Whenever you open your chrome browser, you will be able to see a puzzle piece shaped icon on the top right corner of the tab, just beside the “star”=(favourites) icon.
+How to open the Test Script runner:
+Have the test script file downloaded and ready.(The file has a .side extension)
+On the chrome browser tab, click on that puzzle icon and then click on Selenium IDE that appears under it.
+Now a new window opens, choose/ Click on Open an existing project and search for the test script file with the .side extension. This opens the Selenium IDE test script runner.
+Functionalities/ Buttons you need to be aware of:
+
+
+
+Instructions for running the test scripts:
+These test cases are being written for es, gd and ci portals and will be placed in different folders duly named.
+
+
+
+
+Additional Information on the test Scripts:
+
+Part 1:
+Test 1: Open URL
+- [ ] Success: Means you are connected to VPN and able to open the portal/website
+- [ ] Failure: Not connected to VPN
+- [ ] Data/values: None to be input
+
+Test 2,3: Successful login and logout
+- [ ] Success: You are able to login and logout with email and password and all the UI functionality/ buttons are working fine.
+- [ ] Failure: Either a misspelt email id, password  or problem with UI elements.
+- [ ] Data/Values:
+
+Part 2:
+Test 4,5,6: Forgot password scenario (Change password to new temporary password(Which will essentially be your old password) and logout)
+		This test case is split into three test cases because we have to change the auto generated code we receive in the email every time we run the test case.
+- [ ] Success: You will have changed your password successfully
+- [ ] Failure: Problem with the email you have mentioned, or you did not change the code received by email.
+- [ ] Data/values:
+
+Part 3:
+Test 7: Sign in with newly changed password.
+- [ ] Success: Changed your password to the new password (we are giving the same password when we change the password, so technically we are going through the forgot password flow, but not changing the value of the password)
+- [ ] Failure: Typically the same as the failure of any of the cases 2,3,4,5 or 6.
+- [ ] Data/Values:
+
+Test 8: Devices tab after login : Check an IMSI code(Hardcoded for now unfortunately)  
