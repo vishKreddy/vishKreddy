@@ -13,17 +13,58 @@ How to open the Test Script runner:
 Have the test script file downloaded and ready.(The file has a .side extension)
 On the chrome browser tab, click on that puzzle icon and then click on Selenium IDE that appears under it.
 Now a new window opens, choose/ Click on Open an existing project and search for the test script file with the .side extension. This opens the Selenium IDE test script runner.
+***
+Once you have downloaded the test script file and made changes to the input values (as directed in later steps), make sure that you save the latest version of the scripts manually (as there is no autosave function).
+You can save and download the test script by clicking on the ‘floppy disk’ icon at the top right of the test runner.
+So make sure that you delete the generic folder and save test script which you have made changes to.
+
+***
+
 Functionalities/ Buttons you need to be aware of:
+Test suite: A set of test cases grouped together 
+Run all tests: Runs all tests in the test suite in order
+Run current test :Runs the current test
+Stop:Stops execution and aborts and fails the test case
+Pause in debugger: pauses the test run and one can unpause it too.
+Save Projects:Save changes made 
 
 
+Environments and test scripts:
+These test cases are being written for gd and ci portals in each environment and will be placed in different folders duly named.
+The Folders are:
+- [ ] ES-CI Smoke tests (v-1)
+- [ ] GD-CI Smoke tests (v-1)
+- [ ] ES-DEV Smoke tests (v-1)
+- [ ] GD-DEV Smoke tests (v-1)
+- [ ] ES-STG Smoke tests (v-1)
+- [ ] GD-STG Smoke tests (v-1)
 
-Instructions for running the test scripts:
-These test cases are being written for es, gd and ci portals and will be placed in different folders duly named.
+Instructions for new users of Test scripts:
+There are few Data inputs that are hardcoded into the test script as the test scripts are not data driven.
+Below are the list of test cases and the test steps where you would need to change the input values.
 
+- [ ] Test 2: Step 14: Email id
+		   Step 17: Password
+- [ ] Test 3: Step 5: Email id
+		   Step 8: Password
+- [ ] Test 4: Step 5: Email id		           
+- [ ] Test 6:Step 4: Email id	
+	          Step 11: Password(Same as always)
+		  Step 14:Password(Same as always)
+- [ ] Test 7:Step 4: Email id
+		  Step 7: Password
+- [ ] Test 8:Step 5: Email id
+		  Step 8: Password
+- [ ] Test 11: Step 14: Ask Colin to issue you a testing email and use that id
 
+IGNORE: Part 6: Test 22 and Test 23
 
-
-Additional Information on the test Scripts:
+Additional Information on Individual tests in test Script:
+Common reasons for failure:
+Implicit wait timed out: The page took too long to load
+Unable to find element
+Test case fails due to legit reasons.
+In any case, please re-run the test case and verify if the case truly fails.
 
 Part 1:
 Test 1: Open URL
@@ -34,19 +75,86 @@ Test 1: Open URL
 Test 2,3: Successful login and logout
 - [ ] Success: You are able to login and logout with email and password and all the UI functionality/ buttons are working fine.
 - [ ] Failure: Either a misspelt email id, password  or problem with UI elements.
-- [ ] Data/Values:
+- [ ] Data/Values:Email id, password
 
 Part 2:
-Test 4,5,6: Forgot password scenario (Change password to new temporary password(Which will essentially be your old password) and logout)
-		This test case is split into three test cases because we have to change the auto generated code we receive in the email every time we run the test case.
+Test 4,5,6,7: Forgot password scenario (Change password to new temporary password(Which will essentially be your old password) and logout)
+This test case is split into three test cases because we have to change the auto generated code we receive in the email every time we run the test case.
 - [ ] Success: You will have changed your password successfully
 - [ ] Failure: Problem with the email you have mentioned, or you did not change the code received by email.
-- [ ] Data/values:
+- [ ] Data/values:email id, password, 6 digit key from email, new password
 
 Part 3:
-Test 7: Sign in with newly changed password.
+Test 8: Sign in with newly changed password.
 - [ ] Success: Changed your password to the new password (we are giving the same password when we change the password, so technically we are going through the forgot password flow, but not changing the value of the password)
 - [ ] Failure: Typically the same as the failure of any of the cases 2,3,4,5 or 6.
-- [ ] Data/Values:
+- [ ] Data/Values:email id, new password
 
-Test 8: Devices tab after login : Check an IMSI code(Hardcoded for now unfortunately)  
+Test 9: Devices tab after login (Success): Check an IMSI code(Hardcoded for now unfortunately)
+- [ ] Success: We are able to search for activity performed on a sim based on IMSI code(for now)  
+- [ ] Fail:Device search functionality(using IMSI code) has a problem
+- [ ] Data: IMSI code of a sim
+
+Test 10:Device search functionality (Non happy path i.e, not working IMSI)
+- [ ] Success:  If this case succeeds, then it means that giving invalid IMSI code results in no search results.
+- [ ] Failure: This means that inputting garbage value as IMSI code results in search results which is a defect.
+- [ ] Data: Working IMSI code
+
+Test 11: My team-Add new member
+- [ ] Success: Successfully added new member to the team.
+- [ ] Failure: Could not add a new member, because they already exist or due to a defect.
+- [ ] Data: Email id, and more details about new team member.
+
+Test 12: My team- Suspend a team member 
+- [ ] Success: You must be able to suspend a team member
+- [ ] Failure: Unable to suspend a team member, thus defect.
+- [ ] Data: None
+
+Part4:
+Test 13:Entitlements UI elements check
+- [ ] Success: Able to check and uncheck all the entitlements listed.
+- [ ] Failure:Unable to select/deselect a major bug
+- [ ] Data: None
+
+Test 14: Entitlements-API check- 1-EAP-AKA Challenge and Validation
+- [ ] Success:EAP-AKA challenge and validation APIs are working fine and are not blocked or timed out.
+- [ ] Failure:Problem with the API
+- [ ] Data: Test Data is usually already saved.
+
+Test 15:Entitlements-API check-2-Health Check
+- [ ] Success:Health-check API works as expected
+- [ ] Failure:Problem with health check API
+- [ ] Data:None
+
+Test 16: Entitlements-API check-3-Entitlement Info
+- [ ] Success:Entitlements API is working as expected
+- [ ] Failure:Problem with entitlements API
+- [ ] Data:None
+
+Test 17: Entitlements-API check-4-Phone Num Success
+- [ ] Success:Phone number Success API works as expected
+- [ ] Failure:Problem with Phone number Success API
+- [ ] Data:None
+
+Test 18:Entitlements-API check-5-Pre-flight transfer
+- [ ] Success:Pre flight transfer check API works as expected
+- [ ] Failure:Problem with pre flight transfer API
+- [ ] Data:None
+
+Part 5:
+Test 19: Use Cases-1-One click p-e SIM (Apple and Android)
+- [ ] Success: Use case testing for one click pSIM-eSIM transfer for Apple and Android
+- [ ] Failure:One or more of the API’s could have failed or timed out
+- [ ] Data:None
+
+Test 20: Use cases-2-Watch and Wearables
+(Apple watch Pairing and transfer & Watch and wearables pairing and transfer)
+- [ ] Success:Use case testing for Watch and wearables -I.e., pairing and transfer for both Apple and Android
+- [ ] Failure:One or more of the API’s could have failed or timed out
+- [ ] Data:None
+
+Test 21:Use Cases-3-Baseline
+(Roaming list, Entitlements info and Phone number Registration)
+- [ ] Success:Use case testing for Roaming list, entitlements info and phone umber registration
+- [ ] Failure:One or more of the API’s could have failed or timed out.
+- [ ] Data:None
